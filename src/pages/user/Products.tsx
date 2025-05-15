@@ -14,12 +14,12 @@ const products = [
     id: "1",
     name: "Organic Red Tomatoes",
     image: "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?auto=format&fit=crop&q=80&w=635",
-    price: 3.99,
+    price: 119.70, // 3.99 * 30
     unit: "kg",
     category: "Vegetables",
     farmer: {
       name: "Green Valley Farm",
-      location: "California"
+      location: "Cairo"
     },
     organic: true
   },
@@ -27,12 +27,12 @@ const products = [
     id: "2",
     name: "Fresh Organic Strawberries",
     image: "https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=642",
-    price: 5.99,
-    unit: "lb",
+    price: 179.70, // 5.99 * 30
+    unit: "kg",
     category: "Fruits",
     farmer: {
       name: "Berry Good Farms",
-      location: "Oregon"
+      location: "Alexandria"
     },
     organic: true
   },
@@ -40,12 +40,12 @@ const products = [
     id: "3",
     name: "Purple Carrots",
     image: "https://images.unsplash.com/photo-1606355601253-61a57fe375e7?auto=format&fit=crop&q=80&w=635",
-    price: 2.49,
-    unit: "bunch",
+    price: 74.70, // 2.49 * 30
+    unit: "kg",
     category: "Root Vegetables",
     farmer: {
       name: "Rainbow Acres",
-      location: "Washington"
+      location: "Ismailia"
     },
     organic: true
   },
@@ -53,12 +53,12 @@ const products = [
     id: "4",
     name: "Fresh Avocados",
     image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&q=80&w=668",
-    price: 1.99,
-    unit: "each",
+    price: 59.70, // 1.99 * 30
+    unit: "kg",
     category: "Fruits",
     farmer: {
       name: "Sunshine Orchards",
-      location: "California"
+      location: "Cairo"
     },
     organic: true
   },
@@ -66,12 +66,12 @@ const products = [
     id: "5",
     name: "Organic Lettuce",
     image: "https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?auto=format&fit=crop&q=80&w=625",
-    price: 1.79,
-    unit: "head",
+    price: 53.70, // 1.79 * 30
+    unit: "kg",
     category: "Leafy Greens",
     farmer: {
       name: "Fresh Fields",
-      location: "Idaho"
+      location: "Alexandria"
     },
     organic: true
   },
@@ -79,12 +79,12 @@ const products = [
     id: "6",
     name: "Fresh Basil",
     image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=680",
-    price: 2.29,
-    unit: "bunch",
+    price: 68.70, // 2.29 * 30
+    unit: "kg",
     category: "Herbs",
     farmer: {
       name: "Herbal Essence Farm",
-      location: "Oregon"
+      location: "Ismailia"
     },
     organic: true
   }

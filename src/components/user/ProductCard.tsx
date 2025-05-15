@@ -56,7 +56,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <p className="text-sm text-gray-500">{product.farmer.name} • {product.farmer.location}</p>
           </div>
           <div className="text-lg font-semibold text-market-dark-green">
-            ${product.price}/{product.unit}
+            {product.price.toFixed(2)} EGP/{product.unit}
           </div>
         </div>
       </CardHeader>

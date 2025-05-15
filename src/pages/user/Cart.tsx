@@ -13,7 +13,7 @@ const initialCartItems = [
     id: "1",
     name: "Organic Red Tomatoes",
     image: "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?auto=format&fit=crop&q=80&w=635",
-    price: 3.99,
+    price: 119.70, // 3.99 * 30
     unit: "kg",
     quantity: 2,
     farmer: {
@@ -24,8 +24,8 @@ const initialCartItems = [
     id: "2",
     name: "Fresh Organic Strawberries",
     image: "https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=642",
-    price: 5.99,
-    unit: "lb",
+    price: 179.70, // 5.99 * 30
+    unit: "kg",
     quantity: 1,
     farmer: {
       name: "Berry Good Farms",
@@ -35,8 +35,8 @@ const initialCartItems = [
     id: "3",
     name: "Purple Carrots",
     image: "https://images.unsplash.com/photo-1606355601253-61a57fe375e7?auto=format&fit=crop&q=80&w=635",
-    price: 2.49,
-    unit: "bunch",
+    price: 74.70, // 2.49 * 30
+    unit: "kg",
     quantity: 3,
     farmer: {
       name: "Rainbow Acres",
@@ -66,7 +66,7 @@ const CartPage = () => {
     0
   );
 
-  const shipping = 5.99;
+  const shipping = 50; // Updated shipping to be in EGP (was 5.99)
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
@@ -110,16 +110,16 @@ const CartPage = () => {
                   <CardContent className="space-y-4">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>{subtotal.toFixed(2)} EGP</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>${shipping.toFixed(2)}</span>
+                      <span>{shipping.toFixed(2)} EGP</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between font-semibold text-lg">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>{total.toFixed(2)} EGP</span>
                     </div>
                   </CardContent>
                   <CardFooter>

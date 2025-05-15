@@ -64,12 +64,12 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				market: {
-					primary: '#4CAF50',
+					primary: '#317f54',
 					secondary: '#8BC34A',
 					accent: '#FFC107',
 					brown: '#795548',
 					'light-brown': '#A1887F',
-					'dark-green': '#2E7D32',
+					'dark-green': '#317f54',
 					'light-green': '#C8E6C9',
 				}
 			},

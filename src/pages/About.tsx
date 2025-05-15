@@ -9,27 +9,18 @@ const About = () => {
       <Navbar />
       <main className="flex-grow py-8 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold text-market-dark-green mb-6">About Organic Market</h1>
+          <h1 className="text-3xl font-bold text-market-dark-green mb-6">About FarmX</h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <p className="text-lg mb-4">
-                Organic Market is a platform that connects organic farmers directly with conscious consumers who value fresh, sustainable produce.
-              </p>
-              <p className="mb-4">
-                We believe in promoting sustainable agriculture practices that protect our environment, support local communities, and provide healthier food options for everyone.
-              </p>
-              <p className="mb-4">
-                Our mission is to make organic produce more accessible while ensuring farmers receive fair compensation for their hard work and dedication to sustainable farming.
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
-                alt="Organic farming" 
-                className="rounded-lg shadow-lg max-w-full h-auto"
-              />
-            </div>
+          <div className="mb-12">
+            <p className="text-lg mb-4">
+              FarmX is a platform that encourages organic farms to reach their customers directly, eliminating intermediaries and supporting sustainable agriculture practices.
+            </p>
+            <p className="mb-4">
+              We believe in promoting sustainable agriculture practices that protect our environment, support local communities, and provide healthier food options for everyone.
+            </p>
+            <p className="mb-4">
+              Our mission is to make organic produce more accessible while ensuring farmers receive fair compensation for their hard work and dedication to sustainable farming.
+            </p>
           </div>
           
           <h2 className="text-2xl font-bold text-market-dark-green mb-4">What Makes Us Different</h2>
@@ -67,7 +58,7 @@ const About = () => {
             <h2 className="text-2xl font-bold text-market-dark-green mb-4">Our Vision</h2>
             <p className="text-lg">
               We envision a world where organic farming is the norm, where farmers thrive using sustainable practices, 
-              and where everyone has access to fresh, healthy, locally-grown organic produce. Organic Market is our contribution 
+              and where everyone has access to fresh, healthy, locally-grown organic produce. FarmX is our contribution 
               to making this vision a reality.
             </p>
           </div>
@@ -75,7 +66,7 @@ const About = () => {
           <h2 className="text-2xl font-bold text-market-dark-green mb-4">Join Our Community</h2>
           <p className="mb-8">
             Whether you're a farmer looking to reach more customers or a consumer seeking fresh organic produce, 
-            Organic Market welcomes you to join our growing community dedicated to sustainable agriculture and healthy living.
+            FarmX welcomes you to join our growing community dedicated to sustainable agriculture and healthy living.
           </p>
         </div>
       </main>

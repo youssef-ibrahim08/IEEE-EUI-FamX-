@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, User, Menu } from "lucide-react";
+import { ShoppingCart, User, Menu, Sprout } from "lucide-react";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -22,13 +22,11 @@ const Navbar = ({ userType }: NavbarProps) => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="/placeholder.svg" 
-              alt="Organic Market Logo" 
-              className="w-10 h-10" 
-            />
+            <div className="text-market-primary">
+              <Sprout size={28} strokeWidth={2.5} />
+            </div>
             <span className="text-xl font-display font-bold text-market-primary">
-              Organic Market
+              FarmX
             </span>
           </Link>
 

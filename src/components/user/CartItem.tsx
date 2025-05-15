@@ -61,7 +61,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) => {
             <h3 className="font-medium text-lg">{item.name}</h3>
             <p className="text-sm text-gray-500">Farmer: {item.farmer.name}</p>
             <p className="text-sm text-gray-500">
-              {item.price} EGP/{item.unit}
+              {item.price} EGP/kg
             </p>
           </div>
           <div className="text-right">

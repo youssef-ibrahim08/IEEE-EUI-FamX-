@@ -1,17 +1,18 @@
 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
 
 const farmers = [
   {
     id: "1",
     name: "Green Valley Farm",
-    location: "Sonoma County, California",
+    location: "Cairo",
     image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=1170",
     description: "Family-owned organic farm specializing in heirloom vegetables and herbs. Our farming practices focus on sustainability and biodiversity.",
     specialties: ["Tomatoes", "Lettuce", "Herbs"],
@@ -20,7 +21,7 @@ const farmers = [
   {
     id: "2",
     name: "Berry Good Farms",
-    location: "Willamette Valley, Oregon",
+    location: "Alexandria",
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1170",
     description: "Certified organic berry farm growing strawberries, blueberries, and raspberries. We use natural pest management and focus on soil health.",
     specialties: ["Strawberries", "Blueberries", "Raspberries"],
@@ -29,7 +30,7 @@ const farmers = [
   {
     id: "3",
     name: "Rainbow Acres",
-    location: "Skagit Valley, Washington",
+    location: "Ismailia",
     image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=1170",
     description: "Diverse organic farm growing over 40 varieties of vegetables, including rare and colorful varieties of common vegetables.",
     specialties: ["Rainbow Carrots", "Purple Potatoes", "Heirloom Varieties"],
@@ -38,7 +39,7 @@ const farmers = [
   {
     id: "4",
     name: "Sunshine Orchards",
-    location: "San Diego County, California",
+    location: "Cairo",
     image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&q=80&w=1157",
     description: "Organic citrus and avocado farm with sustainable water practices and solar power. We specialize in rare citrus varieties.",
     specialties: ["Avocados", "Blood Oranges", "Meyer Lemons"],
@@ -48,6 +49,7 @@ const farmers = [
 
 const FarmersPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const filteredFarmers = farmers.filter(farmer => 
     farmer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,6 +58,10 @@ const FarmersPage = () => {
       specialty.toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
+
+  const viewFarmProducts = (farmerId: string) => {
+    navigate(`/user/products?farmerId=${farmerId}`);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -106,7 +112,13 @@ const FarmersPage = () => {
                     </div>
                   </div>
                   <div className="pt-4">
-                    <Button variant="outline" className="w-full">View Products</Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                      onClick={() => viewFarmProducts(farmer.id)}
+                    >
+                      View Products
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

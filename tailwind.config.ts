@@ -106,8 +106,8 @@ export default {
 				'bounce-slight': 'bounce-slight 2s ease-in-out infinite',
 			},
 			fontFamily: {
-				'sans': ['Inter', 'sans-serif'],
-				'display': ['Playfair Display', 'serif'],
+				'sans': ['Cairo', 'sans-serif'],
+				'display': ['Cairo', 'serif'],
 			}
 		}
 	},

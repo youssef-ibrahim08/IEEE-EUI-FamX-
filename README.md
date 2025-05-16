@@ -7,7 +7,11 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
-  
+**Prerequisites**
+Before you begin, ensure you have the following installed on your system:
+Node.js (v18 or later)
+pnpm (recommended) or npm / yarn
+
   **for System: code and simulations on Cirkit Designer IDE So you can get the Simulations form these links:**
   1- IoT system for mintoring water,air,and soil: https://app.cirkitdesigner.com/project/92118510-6bec-4c36-b4ef-693d286691c7
   2- Sewing Seeds Robot: https://app.cirkitdesigner.com/project/d77185f6-0c39-48a8-9ba4-5dfdd7655f9d

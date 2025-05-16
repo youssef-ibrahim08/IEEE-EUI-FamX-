@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
 const Profile = () => {
   const [userType, setUserType] = useState<"farmer" | "user">("user");
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Get user type from localStorage
@@ -17,6 +19,11 @@ const Profile = () => {
       setUserType(savedUserType);
     }
   }, []);
+
+  // Navigate to settings
+  const handleNavigateToSettings = () => {
+    navigate("/settings");
+  };
 
   // Mock data - in a real app, this would come from your backend
   const userProfile = {
@@ -32,7 +39,7 @@ const Profile = () => {
     favorites: 5,
   };
 
-  // Mock orders data
+  // Mock orders data with updated prices in LE
   const orders = [
     { 
       id: "ORD-1234",
@@ -77,6 +84,28 @@ const Profile = () => {
     },
   ];
 
+  // Mock favorite products
+  const favorites = [
+    {
+      id: "PROD-001",
+      name: "Organic Strawberries",
+      farmer: "Green Valley Farm",
+      price: "120 LE/kg",
+      image: "https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=300",
+    },
+    {
+      id: "PROD-002",
+      name: "Heirloom Tomatoes",
+      farmer: "Sunshine Farms",
+      price: "80 LE/kg",
+      image: "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?auto=format&fit=crop&q=80&w=300",
+    },
+  ];
+
+  const handleBrowseProducts = () => {
+    navigate("/user/products");
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar userType={userType} />
@@ -104,7 +133,11 @@ const Profile = () => {
                       Member since {userProfile.joinDate}
                     </p>
                     <div className="w-full">
-                      <Button variant="outline" className="w-full">
+                      <Button 
+                        variant="outline" 
+                        className="w-full"
+                        onClick={handleNavigateToSettings}
+                      >
                         Edit Profile
                       </Button>
                     </div>
@@ -227,10 +260,36 @@ const Profile = () => {
                     </TabsContent>
                     
                     <TabsContent value="favorites">
-                      <div className="text-center py-8">
-                        <p className="text-gray-500 dark:text-gray-400">You don't have any favorite products yet.</p>
-                        <Button className="mt-4" variant="outline">Browse Products</Button>
-                      </div>
+                      {favorites.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {favorites.map((favorite) => (
+                            <Card key={favorite.id} className="overflow-hidden">
+                              <div className="h-40 overflow-hidden">
+                                <img 
+                                  src={favorite.image} 
+                                  alt={favorite.name} 
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <CardContent className="p-4">
+                                <h3 className="font-medium">{favorite.name}</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">{favorite.farmer}</p>
+                                <div className="flex justify-between items-center mt-2">
+                                  <p className="font-semibold">{favorite.price}</p>
+                                  <Button size="sm" variant="outline">View</Button>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-8">
+                          <p className="text-gray-500 dark:text-gray-400">You don't have any favorite products yet.</p>
+                          <Button className="mt-4" variant="outline" onClick={handleBrowseProducts}>
+                            Browse Products
+                          </Button>
+                        </div>
+                      )}
                     </TabsContent>
                   </Tabs>
                 </CardContent>

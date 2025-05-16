@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [accountData, setAccountData] = useState({
     email: "user@example.com",
     name: "John Doe",
@@ -31,9 +33,14 @@ const Settings = () => {
     darkMode: false,
   });
 
-  // Check localStorage for dark mode setting on component mount
+  // Get user type from localStorage
+  const [userType, setUserType] = useState<"farmer" | "user">("user");
+
+  // Check localStorage for dark mode setting and user type on component mount
   useEffect(() => {
     const savedDarkMode = localStorage.getItem("darkMode") === "true";
+    const savedUserType = localStorage.getItem("userType") as "farmer" | "user";
+    
     setPreferences(prev => ({
       ...prev,
       darkMode: savedDarkMode
@@ -43,6 +50,10 @@ const Settings = () => {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
+    }
+    
+    if (savedUserType) {
+      setUserType(savedUserType);
     }
   }, []);
 
@@ -81,6 +92,11 @@ const Settings = () => {
 
   const handleAccountSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Save to localStorage for demo purposes
+    localStorage.setItem("userName", accountData.name);
+    localStorage.setItem("userEmail", accountData.email);
+    localStorage.setItem("userPhone", accountData.phone);
+    
     toast({
       title: "Account updated",
       description: "Your account information has been updated successfully.",
@@ -107,6 +123,7 @@ const Settings = () => {
       return;
     }
     
+    // In a real app, this would call an API to update the password
     toast({
       title: "Password updated",
       description: "Your password has been changed successfully.",
@@ -120,21 +137,32 @@ const Settings = () => {
 
   const handlePreferencesSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Save to localStorage for demo purposes
+    localStorage.setItem("emailNotifications", preferences.emailNotifications.toString());
+    localStorage.setItem("marketingEmails", preferences.marketingEmails.toString());
+    localStorage.setItem("orderUpdates", preferences.orderUpdates.toString());
+    
     toast({
       title: "Preferences updated",
       description: "Your preferences have been saved successfully.",
     });
   };
 
-  // Get userType from localStorage
-  const userType = localStorage.getItem("userType") || "user";
+  const handleBackToProfile = () => {
+    navigate("/profile");
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar userType={userType as "user" | "farmer"} />
+      <Navbar userType={userType} />
       <main className="flex-grow py-8 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h1 className="text-3xl font-bold text-market-dark-green dark:text-market-light-green mb-6">Settings</h1>
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-3xl font-bold text-market-dark-green dark:text-market-light-green">Settings</h1>
+            <Button variant="outline" onClick={handleBackToProfile}>
+              Back to Profile
+            </Button>
+          </div>
           
           <Tabs defaultValue="account" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">

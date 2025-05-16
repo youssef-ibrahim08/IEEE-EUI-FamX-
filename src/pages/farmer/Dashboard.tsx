@@ -12,34 +12,37 @@ const mockProducts = [
     id: "1",
     name: "Organic Red Tomatoes",
     image: "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?auto=format&fit=crop&q=80&w=635",
-    price: 3.99,
+    price: 79.8, // 3.99 * 20
     unit: "kg",
     quantity: 50,
     sold: 15,
     category: "vegetables",
-    dateAdded: "2023-04-10"
+    dateAdded: "2023-04-10",
+    location: "Cairo, Egypt"
   },
   {
     id: "2",
     name: "Fresh Organic Strawberries",
     image: "https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=642",
-    price: 5.99,
-    unit: "lb",
+    price: 119.8, // 5.99 * 20
+    unit: "kg",
     quantity: 30,
     sold: 22,
     category: "fruits",
-    dateAdded: "2023-04-15"
+    dateAdded: "2023-04-15",
+    location: "Alexandria, Egypt"
   },
   {
     id: "3",
     name: "Purple Carrots",
     image: "https://images.unsplash.com/photo-1606355601253-61a57fe375e7?auto=format&fit=crop&q=80&w=635",
-    price: 2.49,
-    unit: "bunch",
+    price: 49.8, // 2.49 * 20
+    unit: "kg",
     quantity: 25,
     sold: 10,
     category: "vegetables",
-    dateAdded: "2023-04-18"
+    dateAdded: "2023-04-18",
+    location: "Ismailia, Egypt"
   }
 ];
 
@@ -49,7 +52,7 @@ const mockOrders = [
     customer: "Alice Johnson",
     date: "2023-05-02",
     items: ["Organic Red Tomatoes", "Purple Carrots"],
-    total: 15.96,
+    total: 319.2, // 15.96 * 20
     status: "Delivered"
   },
   {
@@ -57,7 +60,7 @@ const mockOrders = [
     customer: "Bob Smith",
     date: "2023-05-05",
     items: ["Fresh Organic Strawberries"],
-    total: 11.98,
+    total: 239.6, // 11.98 * 20
     status: "Processing"
   },
   {
@@ -65,7 +68,7 @@ const mockOrders = [
     customer: "Carol Davis",
     date: "2023-05-06",
     items: ["Organic Red Tomatoes", "Fresh Organic Strawberries", "Purple Carrots"],
-    total: 24.94,
+    total: 498.8, // 24.94 * 20
     status: "Pending"
   }
 ];
@@ -135,7 +138,7 @@ const DashboardPage = () => {
                     <CardDescription>This month</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-4xl font-bold text-market-primary">$124.50</p>
+                    <p className="text-4xl font-bold text-market-primary">2,490 LE</p>
                   </CardContent>
                 </Card>
                 
@@ -173,7 +176,7 @@ const DashboardPage = () => {
                             <td className="py-3 px-2">#{order.id}</td>
                             <td className="py-3 px-2">{order.customer}</td>
                             <td className="py-3 px-2">{order.date}</td>
-                            <td className="py-3 px-2">${order.total.toFixed(2)}</td>
+                            <td className="py-3 px-2">{order.total.toFixed(2)} LE</td>
                             <td className="py-3 px-2">
                               <span className={`inline-block px-2 py-1 rounded-full text-xs ${
                                 order.status === 'Delivered' ? 'bg-green-100 text-green-800' :
@@ -228,7 +231,7 @@ const DashboardPage = () => {
                                   <span>{product.name}</span>
                                 </div>
                               </td>
-                              <td className="py-3 px-2">${product.price}/{product.unit}</td>
+                              <td className="py-3 px-2">{product.price.toFixed(2)} LE/{product.unit}</td>
                               <td className="py-3 px-2">{product.quantity}</td>
                               <td className="py-3 px-2">{product.sold}</td>
                               <td className="py-3 px-2">
@@ -289,7 +292,7 @@ const DashboardPage = () => {
                                 {order.items.join(", ")}
                               </div>
                             </td>
-                            <td className="py-3 px-2">${order.total.toFixed(2)}</td>
+                            <td className="py-3 px-2">{order.total.toFixed(2)} LE</td>
                             <td className="py-3 px-2">
                               <span className={`inline-block px-2 py-1 rounded-full text-xs ${
                                 order.status === 'Delivered' ? 'bg-green-100 text-green-800' :

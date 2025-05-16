@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 interface AuthFormProps {
   formType: "login" | "signup";
@@ -21,17 +22,36 @@ const AuthForm = ({ formType }: AuthFormProps) => {
   const [name, setName] = useState("");
   const [userType, setUserType] = useState<"farmer" | "user">(defaultUserType);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
   
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const validatePassword = (value: string) => {
+    if (value.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+      return false;
+    }
+    setPasswordError("");
+    return true;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formType === "signup" && !validatePassword(password)) {
+      return;
+    }
+    
     setLoading(true);
 
     // Simulate authentication delay
     setTimeout(() => {
       setLoading(false);
+      
+      // Save user type to localStorage for persistence
+      localStorage.setItem("userType", userType);
       
       // Success message
       toast({
@@ -50,6 +70,10 @@ const AuthForm = ({ formType }: AuthFormProps) => {
     }, 1500);
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
@@ -59,7 +83,7 @@ const AuthForm = ({ formType }: AuthFormProps) => {
         <CardDescription>
           {formType === "login"
             ? "Enter your email and password to access your account"
-            : "Join Organic Market today and start your journey"}
+            : "Join FarmX today and start your journey"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -92,35 +116,57 @@ const AuthForm = ({ formType }: AuthFormProps) => {
 
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (formType === "signup") {
+                    validatePassword(e.target.value);
+                  }
+                }}
+                required
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="absolute right-0 top-0 h-full px-3 py-2"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </Button>
+            </div>
+            {passwordError && (
+              <p className="text-sm text-destructive">{passwordError}</p>
+            )}
+            {formType === "signup" && (
+              <p className="text-xs text-muted-foreground mt-1">
+                Password must be at least 8 characters long
+              </p>
+            )}
           </div>
 
-          {formType === "signup" && (
-            <div className="space-y-3 pt-2">
-              <Label>I am a:</Label>
-              <RadioGroup
-                value={userType}
-                onValueChange={(value) => setUserType(value as "farmer" | "user")}
-                className="flex space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="farmer" id="farmer" />
-                  <Label htmlFor="farmer" className="cursor-pointer">Farmer</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="user" id="user" />
-                  <Label htmlFor="user" className="cursor-pointer">Consumer</Label>
-                </div>
-              </RadioGroup>
-            </div>
-          )}
+          <div className="space-y-3 pt-2">
+            <Label>I am a:</Label>
+            <RadioGroup
+              value={userType}
+              onValueChange={(value) => setUserType(value as "farmer" | "user")}
+              className="flex space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="farmer" id="farmer" />
+                <Label htmlFor="farmer" className="cursor-pointer">Farmer</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="user" id="user" />
+                <Label htmlFor="user" className="cursor-pointer">Consumer</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
           <Button type="submit" className="w-full mt-6" disabled={loading}>
             {loading ? (

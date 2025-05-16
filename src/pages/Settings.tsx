@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
   const { toast } = useToast();
@@ -31,6 +31,21 @@ const Settings = () => {
     darkMode: false,
   });
 
+  // Check localStorage for dark mode setting on component mount
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem("darkMode") === "true";
+    setPreferences(prev => ({
+      ...prev,
+      darkMode: savedDarkMode
+    }));
+    
+    if (savedDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   const handleAccountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setAccountData((prev) => ({
@@ -52,6 +67,16 @@ const Settings = () => {
       ...prev,
       [name]: value,
     }));
+    
+    // Handle dark mode toggle
+    if (name === "darkMode") {
+      if (value) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      localStorage.setItem("darkMode", value.toString());
+    }
   };
 
   const handleAccountSubmit = (e: React.FormEvent) => {
@@ -72,6 +97,16 @@ const Settings = () => {
       });
       return;
     }
+    
+    if (passwordData.newPassword.length < 8) {
+      toast({
+        title: "Error",
+        description: "Password must be at least 8 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     toast({
       title: "Password updated",
       description: "Your password has been changed successfully.",
@@ -91,12 +126,15 @@ const Settings = () => {
     });
   };
 
+  // Get userType from localStorage
+  const userType = localStorage.getItem("userType") || "user";
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar userType="user" />
-      <main className="flex-grow py-8 bg-gray-50">
+      <Navbar userType={userType as "user" | "farmer"} />
+      <main className="flex-grow py-8 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h1 className="text-3xl font-bold text-market-dark-green mb-6">Settings</h1>
+          <h1 className="text-3xl font-bold text-market-dark-green dark:text-market-light-green mb-6">Settings</h1>
           
           <Tabs defaultValue="account" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">
@@ -176,6 +214,9 @@ const Settings = () => {
                         value={passwordData.newPassword} 
                         onChange={handlePasswordChange} 
                       />
+                      <p className="text-xs text-muted-foreground">
+                        Password must be at least 8 characters long
+                      </p>
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="confirmPassword" className="text-sm font-medium">Confirm New Password</label>
@@ -206,7 +247,7 @@ const Settings = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Email Notifications</h4>
-                        <p className="text-sm text-gray-500">Receive updates via email</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Receive updates via email</p>
                       </div>
                       <Switch 
                         checked={preferences.emailNotifications}
@@ -217,7 +258,7 @@ const Settings = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Marketing Emails</h4>
-                        <p className="text-sm text-gray-500">Receive promotional offers and updates</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Receive promotional offers and updates</p>
                       </div>
                       <Switch 
                         checked={preferences.marketingEmails}
@@ -228,7 +269,7 @@ const Settings = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Order Updates</h4>
-                        <p className="text-sm text-gray-500">Get notifications about your orders</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Get notifications about your orders</p>
                       </div>
                       <Switch 
                         checked={preferences.orderUpdates}
@@ -239,7 +280,7 @@ const Settings = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="font-medium">Dark Mode</h4>
-                        <p className="text-sm text-gray-500">Use dark theme</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Use dark theme</p>
                       </div>
                       <Switch 
                         checked={preferences.darkMode}

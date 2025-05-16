@@ -61,11 +61,11 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) => {
             <h3 className="font-medium text-lg">{item.name}</h3>
             <p className="text-sm text-gray-500">Farmer: {item.farmer.name}</p>
             <p className="text-sm text-gray-500">
-              {item.price} EGP/kg
+              {item.price} LE/kg
             </p>
           </div>
           <div className="text-right">
-            <p className="font-semibold">{(item.price * quantity).toFixed(2)} EGP</p>
+            <p className="font-semibold">{(item.price * quantity).toFixed(2)} LE</p>
           </div>
         </div>
         <div className="mt-4 flex items-center justify-between">

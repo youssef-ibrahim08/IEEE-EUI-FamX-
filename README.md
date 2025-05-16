@@ -7,6 +7,7 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+
 **Prerequisites**
 Before you begin, ensure you have the following installed on your system:
 Node.js (v18 or later)

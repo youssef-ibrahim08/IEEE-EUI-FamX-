@@ -13,7 +13,7 @@ const farmers = [
     id: "1",
     name: "Green Valley Farm",
     location: "Cairo",
-    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=1170",
+    image: "https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&q=80&w=1171",
     description: "Family-owned organic farm specializing in heirloom vegetables and herbs. Our farming practices focus on sustainability and biodiversity.",
     specialties: ["Tomatoes", "Lettuce", "Herbs"],
     since: 2005
@@ -22,7 +22,7 @@ const farmers = [
     id: "2",
     name: "Berry Good Farms",
     location: "Alexandria",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1170",
+    image: "https://images.unsplash.com/photo-1625246333195-78d73c5207fd?auto=format&fit=crop&q=80&w=1170",
     description: "Certified organic berry farm growing strawberries, blueberries, and raspberries. We use natural pest management and focus on soil health.",
     specialties: ["Strawberries", "Blueberries", "Raspberries"],
     since: 2010
@@ -31,7 +31,7 @@ const farmers = [
     id: "3",
     name: "Rainbow Acres",
     location: "Ismailia",
-    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=1170",
+    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1170",
     description: "Diverse organic farm growing over 40 varieties of vegetables, including rare and colorful varieties of common vegetables.",
     specialties: ["Rainbow Carrots", "Purple Potatoes", "Heirloom Varieties"],
     since: 2008
@@ -40,7 +40,7 @@ const farmers = [
     id: "4",
     name: "Sunshine Orchards",
     location: "Cairo",
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&q=80&w=1157",
+    image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1170",
     description: "Organic citrus and avocado farm with sustainable water practices and solar power. We specialize in rare citrus varieties.",
     specialties: ["Avocados", "Blood Oranges", "Meyer Lemons"],
     since: 2003

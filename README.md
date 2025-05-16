@@ -1,5 +1,3 @@
-
-
 **Website URL**: organic-grow-ai-market.lovable.app
 
 ** technologies are used for this project**
